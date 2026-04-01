@@ -1,0 +1,107 @@
+.checkout-container {
+	max-width: 1200px;
+	margin: 60px auto;
+	padding: 0 40px;
+}
+
+.checkout-title {
+	font-size: 32px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-bottom: 60px;
+}
+
+.checkout-title span {
+	font-weight: 300;
+	font-style: italic;
+	color: #2d5a52;
+}
+
+.checkout-grid {
+	display: grid;
+	grid-template-columns: 1.5fr 1fr;
+	gap: 100px;
+}
+
+.checkout-form {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.input-group {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.input-group label {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: #888;
+}
+
+.input-group input {
+	border: none;
+	border-bottom: 1.5px solid #eee;
+	padding: 10px 0;
+	font-size: 16px;
+	outline: none;
+	transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+	border-bottom-color: #2d5a52;
+}
+
+.submit-order-btn {
+	background: #000;
+	color: #fff;
+	border: none;
+	padding: 25px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: 700;
+	cursor: pointer;
+	margin-top: 20px;
+	transition: background 0.3s;
+}
+
+.submit-order-btn:hover {
+	background: #2d5a52;
+}
+
+/* Стили превью заказа */
+.order-preview {
+	background: #f8faf9;
+	padding: 40px;
+}
+
+.preview-item {
+	display: flex;
+	justify-content: space-between;
+	padding: 15px 0;
+	border-bottom: 1px solid #e5e5e5;
+	font-size: 14px;
+}
+
+.preview-total {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 30px;
+	font-size: 20px;
+	font-weight: 800;
+}
+
+/* Стили успеха */
+.success-content {
+	text-align: center;
+	padding: 100px 0;
+}
+
+.success-icon {
+	font-size: 60px;
+	color: #2d5a52;
+	margin-bottom: 30px;
+}

@@ -1,0 +1,192 @@
+/* Базовый блок шапки */
+.header {
+	width: 100%;
+	background-color: #fff;
+	border-bottom: 1px solid #f4f7f6;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	transition: all 0.3s ease;
+}
+
+/* Контейнер на всю ширину */
+.header-container {
+	width: 100%;
+	max-width: 100%;
+	padding: 0 60px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 80px;
+	position: relative;
+	/* Для абсолютного центрирования меню */
+	box-sizing: border-box;
+}
+
+/* Состояние при скролле */
+.header-scrolled {
+	height: 65px;
+	box-shadow: 0 4px 20px rgba(45, 90, 82, 0.05);
+	background: rgba(255, 255, 255, 0.98);
+	backdrop-filter: blur(8px);
+}
+
+/* Логотип */
+.logo a {
+	font-size: 24px;
+	font-weight: 800;
+	letter-spacing: 2px;
+	text-decoration: none;
+	color: #1a1a1a;
+}
+
+.logo span {
+	font-weight: 300;
+	color: #2d5a52;
+	/* Наш акцентный цвет */
+}
+
+/* Центральное навигационное меню */
+.nav-menu {
+	display: flex;
+	gap: 40px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.nav-menu a {
+	text-decoration: none;
+	color: #555;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+.nav-menu a:hover {
+	color: #2d5a52;
+	transform: translateY(-1px);
+}
+
+/* Правый блок действий */
+.header-actions {
+	display: flex;
+	align-items: center;
+	gap: 25px;
+}
+
+/* Поиск */
+.search-wrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.search-input {
+	border: none;
+	border-bottom: 1.5px solid #eee;
+	padding: 8px 30px 8px 5px;
+	font-size: 14px;
+	outline: none;
+	width: 180px;
+	background: transparent;
+	transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-input:focus {
+	width: 280px;
+	border-bottom-color: #2d5a52;
+}
+
+/* Иконки */
+.icon-btn {
+	background: none;
+	border: none;
+	cursor: pointer;
+	position: relative;
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.action-icon {
+	width: 22px;
+	height: 22px;
+	color: #1a1a1a;
+	transition: all 0.3s ease;
+}
+
+.icon-btn:hover .action-icon {
+	color: #2d5a52;
+	transform: scale(1.1);
+}
+
+/* Счетчик корзины (Стиль Veloretti) */
+.cart-count {
+	position: absolute;
+	top: -2px;
+	right: -5px;
+	background: #2d5a52;
+	/* Цветной счетчик */
+	color: #fff;
+	font-size: 9px;
+	min-width: 16px;
+	height: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	font-weight: 700;
+	box-shadow: 0 2px 5px rgba(45, 90, 82, 0.2);
+}
+
+/* Результаты поиска */
+.search-results {
+	position: absolute;
+	top: calc(100% + 15px);
+	right: 0;
+	width: 320px;
+	background: white;
+	border: 1px solid #f0f0f0;
+	box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+	z-index: 100;
+	animation: fadeIn 0.25s ease-out;
+}
+
+.search-item {
+	padding: 12px 20px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 13px;
+	cursor: pointer;
+	border-bottom: 1px solid #f9f9f9;
+	transition: background 0.2s;
+}
+
+.search-item:hover {
+	background: #f8faf9;
+	color: #2d5a52;
+}
+
+.search-item-empty {
+	padding: 25px;
+	text-align: center;
+	color: #999;
+	font-size: 13px;
+	background-color: #fcfcfc;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

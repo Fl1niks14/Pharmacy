@@ -1,0 +1,119 @@
+.product-section {
+	max-width: 1400px;
+	margin: 80px auto;
+	padding: 0 40px;
+}
+
+.section-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	margin-bottom: 50px;
+	border-bottom: 1.5px solid #f4f7f6;
+	/* Мягкий цветной разделитель */
+	padding-bottom: 25px;
+}
+
+.section-title {
+	font-size: 34px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	color: #1a1a1a;
+}
+
+.section-title span {
+	font-weight: 300;
+	font-style: italic;
+	color: #2d5a52;
+	/* Эвкалиптовый акцент */
+}
+
+/* Сетка с тенями */
+.product-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 30px;
+}
+
+.product-card {
+	background-color: #fff;
+	padding: 25px;
+	border: 1px solid #f0f0f0;
+	transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+/* Эффект при наведении — карточка "оживает" */
+.product-card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 20px 40px rgba(45, 90, 82, 0.08);
+	/* Тень с зеленым оттенком */
+	border-color: #2d5a52;
+}
+
+.product-image-wrapper {
+	position: relative;
+	height: 280px;
+	background: #f8faf9;
+	/* Мягкий эвкалиптовый фон подложки */
+	margin-bottom: 25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.product-category {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	font-size: 10px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: 700;
+	color: #2d5a52;
+	/* Цвет категории */
+}
+
+.product-placeholder span {
+	font-size: 110px;
+	font-weight: 100;
+	color: rgba(45, 90, 82, 0.05);
+	/* Едва заметная буква-фон */
+}
+
+.product-name {
+	font-size: 19px;
+	font-weight: 600;
+	margin-bottom: 8px;
+	color: #1a1a1a;
+}
+
+.product-price {
+	font-size: 17px;
+	font-weight: 400;
+	color: #555;
+	margin-bottom: 25px;
+}
+
+/* Кнопка "В корзину" — теперь заметная и стильная */
+.add-to-cart-btn {
+	margin-top: auto;
+	background: none;
+	border: 1.5px solid #2d5a52;
+	color: #2d5a52;
+	padding: 14px;
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+	background: #2d5a52;
+	color: #fff;
+}

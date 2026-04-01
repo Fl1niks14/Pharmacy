@@ -1,0 +1,124 @@
+.hero {
+	width: 100%;
+	min-height: 85vh;
+	display: flex;
+	align-items: center;
+	background-color: #f8faf9;
+	/* Мягкий эвкалиптовый фон под картинку */
+	overflow: hidden;
+}
+
+.hero-container {
+	width: 100%;
+	max-width: 100%;
+	padding: 0 80px;
+	/* Большие отступы по краям */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 40px;
+}
+
+.hero-content {
+	flex: 1;
+	max-width: 700px;
+}
+
+.hero-title {
+	font-size: clamp(48px, 6vw, 90px);
+	/* Шрифт, который сам подстраивается под экран */
+	line-height: 1.05;
+	font-weight: 800;
+	color: #1a1a1a;
+	margin-bottom: 30px;
+	text-transform: uppercase;
+	letter-spacing: -2px;
+}
+
+.hero-title span {
+	font-weight: 300;
+	font-style: italic;
+	color: #2d5a52;
+	/* Наш акцентный зеленый */
+}
+
+.hero-description {
+	font-size: 18px;
+	color: #555;
+	max-width: 500px;
+	line-height: 1.7;
+	margin-bottom: 45px;
+	font-weight: 400;
+}
+
+.hero-btns {
+	display: flex;
+	gap: 20px;
+}
+
+/* Кнопка в стиле Veloretti */
+.btn-primary {
+	background: #1a1a1a;
+	color: #fff;
+	border: 1px solid #1a1a1a;
+	padding: 22px 45px;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:hover {
+	background: #2d5a52;
+	border-color: #2d5a52;
+	transform: translateY(-2px);
+}
+
+.btn-secondary {
+	background: transparent;
+	color: #1a1a1a;
+	border: 1px solid #ddd;
+	padding: 22px 45px;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+	border-color: #1a1a1a;
+}
+
+.hero-image {
+	flex: 1;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.hero-image img {
+	max-width: 90%;
+	height: auto;
+	object-fit: contain;
+	/* Добавляем мягкую тень, чтобы картинка ожила */
+	filter: drop-shadow(20px 30px 50px rgba(0, 0, 0, 0.08));
+	animation: float 6s ease-in-out infinite;
+	/* Эффект парения для диплома */
+}
+
+@keyframes float {
+	0% {
+		transform: translateY(0px);
+	}
+
+	50% {
+		transform: translateY(-15px);
+	}
+
+	100% {
+		transform: translateY(0px);
+	}
+}
