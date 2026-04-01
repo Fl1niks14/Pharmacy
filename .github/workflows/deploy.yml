@@ -2,10 +2,24 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main] # Деплой при пуше в ветку main
+    branches: [main] # Убедитесь, что ваша основная ветка называется main
+
+# Разрешения для работы с GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Позволяет запускать только один деплой одновременно
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,7 +34,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Build project
         run: npm run build
 
       - name: Setup Pages
@@ -29,7 +43,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist' # Папка, которую создает Vite при сборке
+          # В Vite по умолчанию папка сборки называется 'dist'
+          path: './dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
