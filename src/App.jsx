@@ -4,7 +4,7 @@ import AppContent from './AppContent'
 
 const App = () => {
 	return (
-		<Router>
+		<Router basename='/Pharmacy'>
 			<AppContent />
 		</Router>
 	)
