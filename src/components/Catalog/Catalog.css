@@ -1,16 +1,40 @@
+@import url('https://googleapis.com');
+
+/* Обнуление */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.catalog-page {
+	width: 100%;
+	max-width: 1440px;
+	margin: 0 auto;
+	padding: 60px 40px;
+	background-color: #ffffff;
+	font-family: 'Inter', sans-serif;
+}
+
+/* Контейнер на всю ширину */
 .catalog-container {
-	max-width: 1400px;
-	margin: 60px auto;
-	padding: 0 40px;
-	display: grid;
-	grid-template-columns: 250px 1fr;
-	gap: 60px;
+	display: flex;
+	width: 100%;
+	gap: 80px;
+	align-items: flex-start;
+}
+
+/* САЙДБАР - Слева, никуда не двигается */
+.catalog-sidebar {
+	width: 250px;
+	flex-shrink: 0;
+	position: sticky;
+	top: 100px;
 }
 
 .catalog-sidebar h3 {
-	font-size: 12px;
-	text-transform: uppercase;
-	letter-spacing: 2px;
+	font-family: 'Playfair Display', serif;
+	font-size: 26px;
 	margin-bottom: 30px;
 }
 
@@ -19,46 +43,131 @@
 }
 
 .category-list li {
-	font-size: 14px;
-	padding: 12px 0;
+	padding: 10px 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: #999;
 	cursor: pointer;
-	color: #888;
-	transition: all 0.3s;
-	border-bottom: 1px solid #f0f0f0;
+	transition: 0.3s;
 }
 
 .category-list li.active {
-	color: #2d5a52;
-	font-weight: 700;
-	padding-left: 10px;
+	color: #1a1a1a;
+	font-weight: 600;
+	border-bottom: 1px solid #1a1a1a;
+	width: fit-content;
+}
+
+/* ПРАВАЯ ЧАСТЬ - Растягивается */
+.catalog-content {
+	flex-grow: 1;
 }
 
 .catalog-title {
-	font-size: 32px;
-	margin-bottom: 40px;
-	text-transform: uppercase;
+	font-family: 'Playfair Display', serif;
+	font-size: 42px;
+	margin-bottom: 50px;
 }
 
-.catalog-title span {
-	font-weight: 300;
-	font-style: italic;
-	color: #2d5a52;
-}
-
+/* СЕТКА - Исправлено для ровного отображения */
 .catalog-grid {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 30px;
+	/* Создаем 3 или 4 колонки (в зависимости от ширины) */
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 50px 30px;
+	width: 100%;
 }
 
-/* Стили карточек такие же, как мы делали раньше, добавим только плавность */
+/* КАРТОЧКА - Жесткие размеры */
 .product-card {
-	border: 1px solid #eee;
-	padding: 20px;
-	transition: transform 0.3s;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	text-decoration: none !important;
 }
 
-.product-card:hover {
-	transform: translateY(-5px);
-	border-color: #2d5a52;
+/* Заглушка картинки */
+
+
+.product-tag {
+	font-size: 10px;
+	text-transform: uppercase;
+	color: #bbb;
+	margin-bottom: 8px;
+}
+
+/* Убираем синий цвет и подчеркивание с заголовка */
+.product-title-link {
+	text-decoration: none !important;
+	color: #1a1a1a !important;
+}
+
+.product-card h4 {
+	font-family: 'Playfair Display', serif;
+	font-size: 22px;
+	margin-bottom: 10px;
+	min-height: 54px;
+	/* Фикс под 2 строки */
+}
+
+.product-price {
+	font-size: 16px;
+	font-weight: 600;
+	margin-top: auto;
+	/* Прижимает к кнопке */
+	margin-bottom: 20px;
+}
+
+/* Кнопка */
+.add-btn {
+	background: #1a1a1a;
+	color: #fff;
+	border: none;
+	padding: 16px;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	cursor: pointer;
+	transition: background 0.3s;
+}
+
+.add-btn:hover {
+	background: #333;
+}
+
+/* Toast */
+.catalog-toast {
+	position: fixed;
+	bottom: 30px;
+	left: 40px;
+	background: #1a1a1a;
+	color: #fff;
+	padding: 15px 25px;
+	font-size: 12px;
+	z-index: 1000;
+	transform: translateY(200%);
+	transition: transform 0.4s ease;
+}
+
+.catalog-toast.show {
+	transform: translateY(0);
+}
+
+/* Адаптив */
+@media (max-width: 1024px) {
+	.catalog-container {
+		flex-direction: column;
+		gap: 40px;
+	}
+
+	.catalog-sidebar {
+		width: 100%;
+		position: relative;
+		top: 0;
+	}
+
+	.catalog-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }

@@ -1,4 +1,5 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
+
 import './HeroView.css'
 import sis from './img/sis.png'
 const HeroView = () => {
@@ -15,8 +16,12 @@ const HeroView = () => {
 						к вашей двери. Эстетика заботы в каждом заказе.
 					</p>
 					<div className='hero-btns'>
-						<button className='btn-primary'>Перейти в каталог</button>
-						<button className='btn-secondary'>О сервисе</button>
+						<Link to='/catalog' className='btn-primary'>
+							Перейти в каталог
+						</Link>
+						<Link to='/about' className='btn-secondary'>
+							О сервисе
+						</Link>
 					</div>
 				</div>
 				<div className='hero-image'>

@@ -98,7 +98,29 @@
 	display: flex;
 	justify-content: flex-end;
 }
+/* Общие правки для обеих кнопок-ссылок */
+.btn-primary,
+.btn-secondary {
+	display: inline-flex;
+	/* Чтобы Link вел себя как кнопка */
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	/* Убирает подчеркивание текста */
+	text-align: center;
+}
 
+/* Убираем подчеркивание конкретно у первой кнопки */
+.btn-primary {
+	/* Твои старые стили (background, padding и т.д.) */
+	color: #ffffff !important;
+}
+
+/* Убираем подчеркивание у второй */
+.btn-secondary {
+	/* Твои старые стили */
+	color: #1a1a1a !important;
+}
 .hero-image img {
 	max-width: 90%;
 	height: auto;

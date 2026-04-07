@@ -9,7 +9,6 @@ const HomePage = () => {
 			<HeaderView />
 			<HeroView />
 			<ProductListView />
-
 			<FooterView />
 		</>
 	)

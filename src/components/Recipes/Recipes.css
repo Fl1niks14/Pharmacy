@@ -1,0 +1,279 @@
+@import url('https://googleapis.com');
+
+.recipes-page {
+	max-width: 1440px;
+	margin: 0 auto;
+	padding: 80px 40px;
+	background-color: #ffffff;
+	font-family: 'Inter', sans-serif;
+	color: #1a1a1a;
+}
+
+/* Заголовок и фильтр */
+.recipes-header {
+	text-align: center;
+	margin-bottom: 80px;
+}
+
+.recipes-title {
+	font-family: 'Playfair Display', serif;
+	font-size: 48px;
+	font-weight: 400;
+	margin-bottom: 40px;
+	letter-spacing: -1px;
+}
+
+.recipes-title span {
+	font-style: italic;
+	color: #888;
+}
+
+.recipes-filter {
+	display: flex;
+	justify-content: center;
+	list-style: none;
+	gap: 30px;
+	padding: 0;
+}
+
+.recipes-filter li {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: #999;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	padding-bottom: 5px;
+	border-bottom: 1px solid transparent;
+}
+
+.recipes-filter li:hover,
+.recipes-filter li.active {
+	color: #1a1a1a;
+}
+
+.recipes-filter li.active {
+	border-bottom: 1px solid #1a1a1a;
+	font-weight: 600;
+}
+
+/* Сетка карточек */
+.recipes-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	/* 3 колонки для рецептов выглядят лучше */
+	gap: 60px 40px;
+	width: 100%;
+}
+
+/* Карточка рецепта */
+.recipe-card {
+	display: flex;
+	flex-direction: column;
+	background: #fff;
+	cursor: pointer;
+}
+
+.recipe-image {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16/10;
+	background-color: #f9f9f9;
+	overflow: hidden;
+	margin-bottom: 25px;
+}
+
+.recipe-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.recipe-card:hover .recipe-image img {
+	transform: scale(1.05);
+}
+
+.recipe-badge {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	background: rgba(255, 255, 255, 0.9);
+	padding: 6px 12px;
+	font-size: 10px;
+	font-weight: 600;
+	letter-spacing: 1px;
+	border-radius: 2px;
+}
+
+/* Инфо блок */
+.recipe-info {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.recipe-meta {
+	font-size: 10px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: #bbb;
+	margin-bottom: 12px;
+}
+
+.recipe-info h4 {
+	font-family: 'Playfair Display', serif;
+	font-size: 26px;
+	font-weight: 400;
+	margin: 0 0 20px 0;
+	min-height: 32px;
+	/* Чтобы все заголовки были в одну линию */
+}
+
+.view-recipe-btn {
+	margin-top: auto;
+	/* Прижимает кнопку вниз */
+	background: none;
+	border: none;
+	border-bottom: 1px solid #1a1a1a;
+	width: fit-content;
+	padding: 5px 0;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.view-recipe-btn:hover {
+	color: #888;
+	border-color: #888;
+}
+
+/* Анимация появления */
+.animate-in {
+	opacity: 0;
+	animation: simpleFade 0.6s ease forwards;
+}
+
+@keyframes simpleFade {
+	from {
+		opacity: 0;
+		transform: translateY(15px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Адаптив */
+@media (max-width: 1024px) {
+	.recipes-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 600px) {
+	.recipes-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.recipes-filter {
+		gap: 15px;
+		flex-wrap: wrap;
+	}
+
+	.recipes-title {
+		font-size: 32px;
+	}
+}/* Модальное окно */
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.98);
+	/* Почти белый фон в стиле сайта */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	padding: 20px;
+}
+
+.modal-content {
+	background: #fff;
+	width: 100%;
+	max-width: 1100px;
+	max-height: 90vh;
+	position: relative;
+	overflow-y: auto;
+	padding: 60px;
+	border: 1px solid #eee;
+}
+
+.close-modal {
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	background: none;
+	border: none;
+	font-size: 32px;
+	cursor: pointer;
+	color: #1a1a1a;
+}
+
+.modal-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 60px;
+}
+
+.modal-image img {
+	width: 100%;
+	aspect-ratio: 4/5;
+	object-fit: cover;
+}
+
+.modal-details h2 {
+	font-family: 'Playfair Display', serif;
+	font-size: 42px;
+	margin: 15px 0 40px;
+}
+
+.details-section {
+	margin-bottom: 30px;
+}
+
+.details-section h5 {
+	font-size: 10px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: #bbb;
+	margin-bottom: 15px;
+}
+
+.details-section ul,
+.details-section ol {
+	padding-left: 18px;
+	line-height: 1.8;
+	font-size: 15px;
+}
+
+.details-section li {
+	margin-bottom: 8px;
+}
+
+/* Адаптив для модалки */
+@media (max-width: 850px) {
+	.modal-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.modal-content {
+		padding: 40px 20px;
+	}
+}

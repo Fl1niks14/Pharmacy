@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useStore } from '../../Store/store'
 import './ProductListView.css'
 
 const ProductListView = () => {
-	// Достаем всё необходимое из стора одним хуком
-	const { products, searchQuery, addToCart } = useStore()
+	// Достаем cart и updateQuantity, чтобы управлять состоянием из карточки
+	const { products, addToCart, cart, updateQuantity } = useStore()
 
-	const filteredProducts = products.filter(p =>
-		p.name.toLowerCase().includes(searchQuery.toLowerCase())
-	)
+	const [randomProducts] = useState(() => {
+		return [...products].sort(() => 0.5 - Math.random()).slice(0, 4)
+	})
 
 	return (
 		<section className='product-section'>
@@ -16,39 +16,45 @@ const ProductListView = () => {
 				<h2 className='section-title'>
 					Популярные <span>препараты</span>
 				</h2>
-				<p className='section-count'>Найдено: {filteredProducts.length}</p>
+				<p className='section-count'>Найдено: {products.length}</p>
 			</div>
 
 			<div className='product-grid'>
-				{filteredProducts.map(product => (
-					<div key={product.id} className='product-card'>
-						<div className='product-image-wrapper'>
-							<div className='product-category'>{product.category}</div>
-							<div className='product-placeholder'>
-								{/* Берем первую букву названия для минималистичной иконки */}
-								<span>{product.name[0]}</span>
+				{randomProducts.map(product => {
+					// Проверяем, есть ли этот товар уже в корзине
+					const cartItem = cart.find(item => item.id === product.id)
+
+					return (
+						<div key={product.id} className='product-card'>
+							<div className='product-info'>
+								<h3 className='product-name'>{product.name}</h3>
+								<p className='product-price'>{product.price} ₽</p>
+
+								{/* Если товара нет в корзине — показываем кнопку "В корзину" */}
+								{!cartItem ? (
+									<button
+										className='add-to-cart-btn'
+										onClick={() => addToCart(product)}
+									>
+										В корзину
+									</button>
+								) : (
+									/* Если товар в корзине — показываем кнопки +/- */
+									<div className='quantity-controls list-view-controls'>
+										<button onClick={() => updateQuantity(product.id, -1)}>
+											-
+										</button>
+										<span className='quantity-value'>{cartItem.quantity}</span>
+										<button onClick={() => updateQuantity(product.id, 1)}>
+											+
+										</button>
+									</div>
+								)}
 							</div>
 						</div>
-						<div className='product-info'>
-							<h3 className='product-name'>{product.name}</h3>
-							<p className='product-price'>{product.price} ₽</p>
-
-							<button
-								className='add-to-cart-btn'
-								onClick={() => addToCart(product)}
-							>
-								В корзину
-							</button>
-						</div>
-					</div>
-				))}
+					)
+				})}
 			</div>
-
-			{filteredProducts.length === 0 && (
-				<div className='no-results-msg'>
-					К сожалению, по запросу «{searchQuery}» ничего не найдено.
-				</div>
-			)}
 		</section>
 	)
 }

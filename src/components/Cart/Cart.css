@@ -81,7 +81,80 @@
 	border-radius: 2px;
 	height: fit-content;
 }
+/* Контейнер для кнопок управления количеством */
+.quantity-controls {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	background: #f8f9fa;
+	padding: 6px 12px;
+	border-radius: 8px;
+	border: 1px solid #e0e0e0;
+}
 
+/* Сами кнопки + и - */
+.quantity-controls button {
+	width: 28px;
+	height: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #fff;
+	border: 1px solid #d1d1d1;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: 500;
+	color: #333;
+	transition: all 0.2s ease;
+}
+
+/* Ховер на кнопки */
+.quantity-controls button:hover:not(:disabled) {
+	background-color: #007bff;
+	/* Цвет вашей основной темы */
+	color: white;
+	border-color: #007bff;
+}
+
+/* Состояние, когда нельзя уменьшить меньше 1 */
+.quantity-controls button:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+	background-color: #f0f0f0;
+}
+
+/* Текст с цифрой количества */
+.quantity-value {
+	font-weight: 600;
+	font-size: 16px;
+	min-width: 20px;
+	text-align: center;
+	color: #2c3e50;
+}
+
+/* Обновление строки товара для выравнивания */
+.cart-item-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 15px 0;
+	border-bottom: 1px solid #eee;
+}
+
+/* Чтобы на мобилках всё не сжималось */
+@media (max-width: 600px) {
+	.cart-item-row {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 15px;
+	}
+
+	.quantity-controls {
+		width: 100%;
+		justify-content: center;
+	}
+}
 .checkout-total {
 	margin-top: 25px;
 	padding-top: 20px;

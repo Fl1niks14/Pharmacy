@@ -155,7 +155,27 @@
 	z-index: 100;
 	animation: fadeIn 0.25s ease-out;
 }
+.search-item {
+	display: block;
+	text-decoration: none;
+	color: inherit;
+	padding: 10px;
+	border-bottom: 1px solid #eee;
+	transition: background 0.2s;
+}
 
+.search-item:hover {
+	background-color: #f5f5f5;
+}
+
+.search-item-name {
+	display: block;
+	font-weight: 500;
+}
+
+.search-item-price {
+	color: #888;
+}
 .search-item {
 	padding: 12px 20px;
 	display: flex;
@@ -189,4 +209,55 @@
 		opacity: 1;
 		transform: translateY(0);
 	}
+}.search-wrapper {
+	position: relative;
+	/* Важно для позиционирования списка */
+	width: 250px;
+}
+
+.search-results {
+	position: absolute;
+	top: calc(100% + 10px);
+	left: 0;
+	right: 0;
+	background: white;
+	border-radius: 8px;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+	z-index: 1000;
+	border: 1px solid #eee;
+}
+
+.search-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 15px;
+	text-decoration: none;
+	color: #333;
+	font-size: 14px;
+	transition: background 0.2s;
+	border-bottom: 1px solid #f5f5f5;
+}
+
+.search-item:last-child {
+	border-bottom: none;
+}
+
+.search-item:hover {
+	background-color: #f8f9fa;
+}
+
+.search-item-price {
+	color: #3a5e49;
+	/* Зеленый "аптечный" цвет для цены */
+	font-weight: 600;
+	font-size: 12px;
+}
+
+.search-item-empty {
+	padding: 15px;
+	color: #999;
+	text-align: center;
+	font-size: 14px;
 }

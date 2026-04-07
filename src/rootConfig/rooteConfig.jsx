@@ -3,6 +3,9 @@ import CartPage from '../container/CartPage'
 
 import CheckoutPage from '../container/CheckoutPage'
 import CatalogPage from '../container/CatalogPage'
+import Product from '../container/Product'
+import Recipes from '../container/Recipes'
+import About from '../container/About'
 
 const routesConfig = [
 	{
@@ -18,8 +21,20 @@ const routesConfig = [
 		Component: CheckoutPage
 	},
 	{
+		path: '/product/:id',
+		Component: Product
+	},
+	{
+		path: '/recipes',
+		Component: Recipes
+	},
+	{
 		path: '/catalog',
 		Component: CatalogPage
+	},
+	{
+		path: '/about',
+		Component: About
 	}
 ]
 

@@ -27,8 +27,8 @@ const HeaderView = () => {
 				</div>
 				<nav className='nav-menu'>
 					<Link to='/catalog'>Каталог</Link>
-					<Link to='/catalog'>Рецепты</Link>
-					<Link to='/catalog'>О нас</Link>
+					<Link to='/recipes'>Рецепты</Link>
+					<Link to='/about'>О нас</Link>
 				</nav>
 				<div className='header-actions'>
 					<div className='search-wrapper'>
@@ -43,13 +43,18 @@ const HeaderView = () => {
 							<div className='search-results'>
 								{filtered.length ? (
 									filtered.map(p => (
-										<div key={p.id} className='search-item'>
-											<span>{p.name}</span>
-											<small>{p.price} ₽</small>
-										</div>
+										<Link
+											to={`/product/${p.id}`}
+											key={p.id}
+											className='search-item'
+											onClick={() => setSearchQuery('')}
+										>
+											<span className='search-item-name'>{p.name}</span>
+											<span className='search-item-price'>{p.price} ₽</span>
+										</Link>
 									))
 								) : (
-									<div className='search-item-empty'>Не найдено</div>
+									<div className='search-item-empty'>Ничего не найдено</div>
 								)}
 							</div>
 						)}

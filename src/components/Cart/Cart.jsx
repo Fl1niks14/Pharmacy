@@ -4,13 +4,16 @@ import { useStore } from '../../Store/store'
 import './Cart.css'
 
 const Cart = () => {
-	// ИСПРАВЛЕНО: Достаем removeFromCart из стора
-	const { cart, removeFromCart } = useStore()
+	// Добавляем updateQuantity из стора
+	const { cart, removeFromCart, updateQuantity } = useStore()
 	const navigate = useNavigate()
 
-	// ИСПРАВЛЕНО: Считаем общую сумму прямо здесь
-	const totalPrice = cart.reduce((sum, item) => sum + item.price, 0)
-
+	// ИСПРАВЛЕНО: Теперь считаем сумму как (цена * количество)
+	const totalPrice = cart.reduce(
+		(sum, item) => sum + item.price * (item.quantity || 1),
+		0
+	)
+	const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0)
 	const handleCheckout = () => {
 		if (cart.length > 0) {
 			navigate('/checkout')
@@ -29,8 +32,8 @@ const Cart = () => {
 				{cart.length > 0 ? (
 					<div className='cart-grid'>
 						<div className='cart-items-list'>
-							{cart.map((item, index) => (
-								<div key={index} className='cart-item-row'>
+							{cart.map(item => (
+								<div key={item.id} className='cart-item-row'>
 									<div className='item-main'>
 										<span className='item-letter'>{item.name[0]}</span>
 										<div>
@@ -38,8 +41,29 @@ const Cart = () => {
 											<p>{item.category}</p>
 										</div>
 									</div>
+
+									{/* БЛОК УПРАВЛЕНИЯ КОЛИЧЕСТВОМ */}
+									<div className='quantity-controls'>
+										{/* Минус один */}
+										<button
+											onClick={() => updateQuantity(item.id, -1)}
+											disabled={item.quantity <= 1}
+										>
+											-
+										</button>
+
+										<span className='quantity-value'>{item.quantity || 1}</span>
+
+										{/* Плюс один (используем существующую addToCart или новую updateQuantity) */}
+										<button onClick={() => updateQuantity(item.id, 1)}>
+											+
+										</button>
+									</div>
+
 									<div className='item-meta'>
-										<span className='item-price'>{item.price} ₽</span>
+										<span className='item-price'>
+											{(item.price * (item.quantity || 1)).toLocaleString()} ₽
+										</span>
 										<button
 											onClick={() => removeFromCart(item.id)}
 											className='delete-btn'
@@ -54,12 +78,13 @@ const Cart = () => {
 						<div className='cart-checkout-card'>
 							<h3>Детали заказа</h3>
 							<div className='checkout-row'>
-								<span>Позиций в чеке:</span>
-								<span>{cart.length}</span>
+								<span>Всего товаров:</span>
+								<span>{totalItems} шт.</span>
 							</div>
+
 							<div className='checkout-total'>
 								<span>Итого:</span>
-								<span>{totalPrice} ₽</span>
+								<span>{totalPrice.toLocaleString()} ₽</span>
 							</div>
 							<button className='main-checkout-btn' onClick={handleCheckout}>
 								Оформить заказ
