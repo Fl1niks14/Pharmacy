@@ -39,6 +39,9 @@ const Catalog = () => {
 		setTimeout(() => setToastMessage(null), 2000)
 	}
 
+	// Запасная картинка, если в store пусто или ссылка битая
+	const fallbackImage = 'https://flaticon.com'
+
 	return (
 		<div className='catalog-page'>
 			{/* Премиальный Toast уведомление */}
@@ -80,15 +83,15 @@ const Catalog = () => {
 								{/* Категория сверху */}
 								<span className='product-tag'>{product.category}</span>
 
-								{/* Общая картинка для всех лекарств */}
+								{/* Общая картинка (ОДИН РАЗ) */}
 								<div className='product-image-box'>
 									<img
-										src={product.image || 'https://flaticon.com'}
+										src={product.image || fallbackImage}
 										alt={product.name}
 										className='product-img'
 										onError={e => {
 											e.target.onerror = null
-											e.target.src = 'https://flaticon.com'
+											e.target.src = fallbackImage
 										}}
 									/>
 								</div>

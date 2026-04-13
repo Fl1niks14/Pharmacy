@@ -1,6 +1,23 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-
+import aspirin from './imgCatalog/aspirin.png'
+import nurofen from './imgCatalog/nurofen.png'
+import korvalol from './imgCatalog/korvalol.png'
+import vitamin_c from './imgCatalog/vitamin_c.png'
+import paracetamol from './imgCatalog/paracetamol.png'
+import magniyb6 from './imgCatalog/magniyb6.png'
+import amoxicillin from './imgCatalog/amoxicillin.png'
+import validol from './imgCatalog/validol.png'
+import loratadine from './imgCatalog/loratadine.png'
+import suprastin from './imgCatalog/suprastin.png'
+import ibuprofen from './imgCatalog/ibuprofen.png'
+import glycerinsuppositories from './imgCatalog/glycerin-suppositories.png'
+import ginkgo from './imgCatalog/ginkgo.png'
+import coughsyrup from './imgCatalog/cough-syrup.png'
+import citramon from './imgCatalog/citramon.png'
+import mezim from './imgCatalog/mezim.png'
+import ketorolac from './imgCatalog/ketorolac.png'
+import askorbina from './imgCatalog/askorbina.png'
 export const useStore = create(
 	persist(
 		set => ({
@@ -12,8 +29,7 @@ export const useStore = create(
 					category: 'Обезболивающее',
 					description:
 						'Классическое средство для снижения боли и температуры...',
-					// ИСПРАВЛЕНО: Указываем путь от корня public
-					image: '/aspirin.png'
+					image: aspirin
 				},
 				{
 					id: 2,
@@ -22,7 +38,7 @@ export const useStore = create(
 					category: 'Обезболивающее',
 					description:
 						'Эффективное средство против боли и жара. Действует быстро и целенаправленно.',
-					image: 'https://example.com/images/nurofen.jpg'
+					image: nurofen
 				},
 				{
 					id: 3,
@@ -31,7 +47,7 @@ export const useStore = create(
 					category: 'Сердечное',
 					description:
 						'Средство для снятия нервного напряжения и спокойствия сердца.',
-					image: 'https://example.com/images/korvalol.jpg'
+					image: korvalol
 				},
 				{
 					id: 4,
@@ -40,7 +56,7 @@ export const useStore = create(
 					category: 'Витамины',
 					description:
 						'Антиоксидант, укрепляет иммунитет и помогает бороться с простудными заболеваниями.',
-					image: 'https://example.com/images/vitamin_c.jpg'
+					image: vitamin_c
 				},
 				{
 					id: 5,
@@ -49,7 +65,7 @@ export const useStore = create(
 					category: 'Обезболивающее',
 					description:
 						'Облегчает головную боль, снижает жар и уменьшает воспаление.',
-					image: 'https://example.com/images/paracetamol.jpg'
+					image: paracetamol
 				},
 				{
 					id: 6,
@@ -58,7 +74,7 @@ export const useStore = create(
 					category: 'Витамины',
 					description:
 						'Поддерживает работу нервной системы и помогает бороться с утомлением.',
-					image: 'https://example.com/images/magniyb6.jpg'
+					image: magniyb6
 				},
 				{
 					id: 7,
@@ -66,7 +82,7 @@ export const useStore = create(
 					price: 350,
 					category: 'Антибиотики',
 					description: 'Лекарство для лечения бактериальных инфекций.',
-					image: 'https://example.com/images/amoxicillin.jpg'
+					image: amoxicillin
 				},
 				{
 					id: 8,
@@ -75,7 +91,7 @@ export const useStore = create(
 					category: 'Сердечное',
 					description:
 						'Средство для быстрого снятия болей и неприятных ощущений в области сердца.',
-					image: 'https://example.com/images/validol.jpg'
+					image: validol
 				},
 				{
 					id: 9,
@@ -84,7 +100,7 @@ export const useStore = create(
 					category: 'Аллергия',
 					description:
 						'Помогает устранить симптомы аллергии, такие как зуд, насморк и чихание.',
-					image: 'https://example.com/images/loratadine.jpg'
+					image: loratadine
 				},
 				{
 					id: 10,
@@ -93,7 +109,7 @@ export const useStore = create(
 					category: 'Аллергия',
 					description:
 						'Противоаллергическое средство для снятия симптомов аллергии.',
-					image: 'https://example.com/images/suprastin.jpg'
+					image: suprastin
 				},
 				{
 					id: 11,
@@ -101,7 +117,7 @@ export const useStore = create(
 					price: 180,
 					category: 'Обезболивающее',
 					description: 'Обезболивающее и противовоспалительное средство.',
-					image: 'https://example.com/images/ibuprofen.jpg'
+					image: ibuprofen
 				},
 				{
 					id: 12,
@@ -110,7 +126,7 @@ export const useStore = create(
 					category: 'Противоспазматические',
 					description:
 						'Средство для устранения запоров и мягкого очищения кишечника.',
-					image: 'https://example.com/images/glycerin-suppositories.jpg'
+					image: glycerinsuppositories
 				},
 				{
 					id: 13,
@@ -119,7 +135,7 @@ export const useStore = create(
 					category: 'Витамины',
 					description:
 						'Улучшает кровообращение и память, способствует концентрации.',
-					image: 'https://example.com/images/ginkgo.jpg'
+					image: ginkgo
 				},
 				{
 					id: 14,
@@ -127,7 +143,7 @@ export const useStore = create(
 					price: 220,
 					category: 'Противопростудные',
 					description: 'Облегчает кашель и снимает раздражение горла.',
-					image: 'https://example.com/images/cough-syrup.jpg'
+					image: coughsyrup
 				},
 				{
 					id: 15,
@@ -135,7 +151,7 @@ export const useStore = create(
 					price: 120,
 					category: 'Обезболивающее',
 					description: 'Обезболивающее средство для головных болей и жара.',
-					image: 'https://example.com/images/citramon.jpg'
+					image: citramon
 				},
 				{
 					id: 16,
@@ -144,7 +160,7 @@ export const useStore = create(
 					category: 'Пищеварение',
 					description:
 						'Способствует пищеварению и помогает при нарушениях желудка.',
-					image: 'https://example.com/images/mezim.jpg'
+					image: mezim
 				},
 				{
 					id: 17,
@@ -152,7 +168,7 @@ export const useStore = create(
 					price: 650,
 					category: 'Обезболивающее',
 					description: 'Мощное обезболивающее средство при сильных болях.',
-					image: 'https://example.com/images/ketorolac.jpg'
+					image: ketorolac
 				},
 				{
 					id: 18,
@@ -161,7 +177,7 @@ export const useStore = create(
 					category: 'Витамины',
 					description:
 						'Витамин C для повышения иммунитета и борьбы с простудами.',
-					image: 'https://example.com/images/askorbina.jpg'
+					image: askorbina
 				}
 			],
 

@@ -8,7 +8,6 @@ const ProductDetail = () => {
 	const navigate = useNavigate()
 	const { products, addToCart } = useStore()
 
-	// Состояние для показа уведомления
 	const [showToast, setShowToast] = useState(false)
 
 	const product = products.find(p => p.id === Number(id))
@@ -27,13 +26,14 @@ const ProductDetail = () => {
 	const handleAddToCart = () => {
 		addToCart(product)
 		setShowToast(true)
-		// Скрываем уведомление через 2 секунды
 		setTimeout(() => setShowToast(false), 2000)
 	}
 
+	// Запасная картинка
+	const fallbackImage = 'https://flaticon.com'
+
 	return (
 		<div className='product-detail-page'>
-			{/* Всплывающее уведомление */}
 			<div className={`toast ${showToast ? 'show' : ''}`}>
 				{product.name} добавлен в корзину!
 			</div>
@@ -44,7 +44,15 @@ const ProductDetail = () => {
 
 			<div className='product-detail-card animate-fade-in'>
 				<div className='product-detail-visual'>
-					<div className='large-placeholder'>{product.name[0]}</div>
+					<img
+						src={product.image}
+						alt={product.name}
+						className='detail-img'
+						onError={e => {
+							e.target.onerror = null
+							e.target.src = fallbackImage
+						}}
+					/>
 				</div>
 
 				<div className='product-detail-info'>
@@ -52,7 +60,7 @@ const ProductDetail = () => {
 					<h1>{product.name}</h1>
 					<p className='detail-description'>
 						{product.description ||
-							`Описание для ${product.name} скоро появится.`}
+							`Описание для ${product.name} скоро появится. Данный препарат применяется строго по назначению врача. Перед использованием ознакомьтесь с инструкцией.`}
 					</p>
 
 					<div className='detail-footer'>

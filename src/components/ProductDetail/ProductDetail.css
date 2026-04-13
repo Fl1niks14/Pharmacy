@@ -93,3 +93,70 @@
 .add-btn:active {
 	transform: scale(0.95);
 }
+.product-detail-visual {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #fcfcfc;
+	/* Светлый фон */
+	padding: 40px;
+	border-radius: 20px;
+}
+
+.detail-img {
+	max-width: 100%;
+	max-height: 450px;
+	/* Увеличили размер для детальной страницы */
+	object-fit: contain;
+	filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.05));
+	/* Мягкая тень для объема */
+}/* Общий контейнер карточки */
+.product-detail-card {
+	display: flex;
+	gap: 60px;
+	background: #fff;
+	padding: 40px;
+	border-radius: 4px;
+	/* У тебя на скрине острые или слегка скругленные углы */
+	align-items: center;
+}
+
+/* Левая часть с картинкой */
+.product-detail-visual {
+	flex: 1;
+	background-color: #f9f9f9;
+	/* Светлая подложка под картинку */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 400px;
+}
+
+.detail-img {
+	max-width: 80%;
+	/* Чтобы был "воздух" вокруг коробки */
+	height: auto;
+	object-fit: contain;
+	/* Если хочешь добавить мягкую тень как на скрине */
+	filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.08));
+}
+
+/* Правая часть с инфо */
+.product-detail-info {
+	flex: 1;
+}
+
+.detail-category {
+	font-size: 14px;
+	color: #888;
+	margin-bottom: 10px;
+	display: block;
+}
+
+.product-detail-info h1 {
+	font-family: 'Playfair Display', serif;
+	/* Как в твоем каталоге */
+	font-size: 36px;
+	margin-bottom: 20px;
+}

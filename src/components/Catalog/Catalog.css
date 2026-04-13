@@ -102,7 +102,35 @@
 	text-decoration: none !important;
 	color: #1a1a1a !important;
 }
+/* Контейнер для картинки */
+.product-image-box {
+	width: 100%;
+	height: 320px;
+	/* Высота под твой дизайн */
+	background-color: #fcfcfc;
+	/* Очень светлый фон, как в аптечных бутиках */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+	overflow: hidden;
+	border: 1px solid #f0f0f0;
+	/* Еле заметная рамка */
+}
 
+/* Сама картинка */
+.product-img {
+	max-width: 85%;
+	max-height: 85%;
+	object-fit: contain;
+	/* Чтобы пачка лекарства не растягивалась, а вписывалась */
+	transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Эффект при наведении на карточку */
+.product-card:hover .product-img {
+	transform: scale(1.08);
+}
 .product-card h4 {
 	font-family: 'Playfair Display', serif;
 	font-size: 22px;

@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom' // Добавил Link для перехода
 import { useStore } from '../../Store/store'
 import './ProductListView.css'
 
 const ProductListView = () => {
-	// Достаем cart и updateQuantity, чтобы управлять состоянием из карточки
 	const { products, addToCart, cart, updateQuantity } = useStore()
 
 	const [randomProducts] = useState(() => {
 		return [...products].sort(() => 0.5 - Math.random()).slice(0, 4)
 	})
+
+	const fallbackImage = 'https://flaticon.com'
 
 	return (
 		<section className='product-section'>
@@ -21,16 +23,38 @@ const ProductListView = () => {
 
 			<div className='product-grid'>
 				{randomProducts.map(product => {
-					// Проверяем, есть ли этот товар уже в корзине
 					const cartItem = cart.find(item => item.id === product.id)
 
 					return (
 						<div key={product.id} className='product-card'>
+							{/* ДОБАВЛЕНО: Блок с картинкой */}
+							<Link
+								to={`/product/${product.id}`}
+								className='product-image-link'
+							>
+								<div className='product-image-box'>
+									<img
+										src={product.image || fallbackImage}
+										alt={product.name}
+										className='product-img'
+										onError={e => {
+											e.target.onerror = null
+											e.target.src = fallbackImage
+										}}
+									/>
+								</div>
+							</Link>
+
 							<div className='product-info'>
-								<h3 className='product-name'>{product.name}</h3>
+								{/* Обернул название в ссылку */}
+								<Link
+									to={`/product/${product.id}`}
+									style={{ textDecoration: 'none', color: 'inherit' }}
+								>
+									<h3 className='product-name'>{product.name}</h3>
+								</Link>
 								<p className='product-price'>{product.price} ₽</p>
 
-								{/* Если товара нет в корзине — показываем кнопку "В корзину" */}
 								{!cartItem ? (
 									<button
 										className='add-to-cart-btn'
@@ -39,7 +63,6 @@ const ProductListView = () => {
 										В корзину
 									</button>
 								) : (
-									/* Если товар в корзине — показываем кнопки +/- */
 									<div className='quantity-controls list-view-controls'>
 										<button onClick={() => updateQuantity(product.id, -1)}>
 											-
