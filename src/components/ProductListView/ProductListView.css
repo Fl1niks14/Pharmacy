@@ -1,7 +1,11 @@
+/* ==========================================================================
+   1. Основная секция и заголовок
+   ========================================================================== */
 .product-section {
 	max-width: 1400px;
 	margin: 80px auto;
 	padding: 0 40px;
+	box-sizing: border-box;
 }
 
 .section-header {
@@ -20,6 +24,7 @@
 	text-transform: uppercase;
 	letter-spacing: 1.5px;
 	color: #1a1a1a;
+	margin: 0;
 }
 
 .section-title span {
@@ -29,10 +34,19 @@
 	/* Эвкалиптовый акцент */
 }
 
-/* Сетка с тенями */
+.section-count {
+	margin: 0;
+	color: #888;
+	font-size: 14px;
+}
+
+/* ==========================================================================
+   2. Сетка товаров и карточка (Десктоп)
+   ========================================================================== */
 .product-grid {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
+	/* 4 колонки на ПК */
 	gap: 30px;
 }
 
@@ -40,13 +54,14 @@
 	background-color: #fff;
 	padding: 25px;
 	border: 1px solid #f0f0f0;
-	transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 	display: flex;
 	flex-direction: column;
 	position: relative;
+	box-sizing: border-box;
+	transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/* Эффект при наведении — карточка "оживает" */
+/* Эффект при наведении на карточку */
 .product-card:hover {
 	transform: translateY(-10px);
 	box-shadow: 0 20px 40px rgba(45, 90, 82, 0.08);
@@ -54,136 +69,25 @@
 	border-color: #2d5a52;
 }
 
-.product-image-wrapper {
-	position: relative;
-	height: 280px;
-	background: #f8faf9;
-	/* Мягкий эвкалиптовый фон подложки */
-	margin-bottom: 25px;
+/* ==========================================================================
+   3. Изображение товара
+   ========================================================================== */
+.product-image-link {
+	text-decoration: none;
+	display: block;
+	width: 100%;
+}
+
+.product-image-box {
+	width: 100%;
+	height: 240px;
+	/* Фиксированная высота контейнера картинки */
+	background-color: #f8faf9;
+	/* Мягкая эвкалиптовая подложка */
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-
-.product-category {
-	position: absolute;
-	top: 15px;
-	left: 15px;
-	font-size: 10px;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	font-weight: 700;
-	color: #2d5a52;
-	/* Цвет категории */
-}
-
-.product-placeholder span {
-	font-size: 110px;
-	font-weight: 100;
-	color: rgba(45, 90, 82, 0.05);
-	/* Едва заметная буква-фон */
-}
-
-.product-name {
-	font-size: 19px;
-	font-weight: 600;
-	margin-bottom: 8px;
-	color: #1a1a1a;
-}
-
-.product-price {
-	font-size: 17px;
-	font-weight: 400;
-	color: #555;
-	margin-bottom: 25px;
-}
-
-/* Кнопка "В корзину" — теперь заметная и стильная */
-.add-to-cart-btn {
-	margin-top: auto;
-	background: none;
-	border: 1.5px solid #2d5a52;
-	color: #2d5a52;
-	padding: 14px;
-	font-size: 12px;
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	cursor: pointer;
-	transition: all 0.3s ease;
-}
-
-.add-to-cart-btn:hover {
-	background: #2d5a52;
-	color: #fff;
-}/* Контейнер управления количеством в списке */
-.list-view-controls {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background: #ffffff;
-	border: 1px solid #e0e0e0;
-	border-radius: 4px;
-	padding: 4px 8px;
-	margin-top: 12px;
-	width: 100%;
-	max-width: 120px;
-	/* Ограничиваем ширину, как на макете */
-}
-
-/* Кнопки - и + */
-.list-view-controls button {
-	background: none;
-	border: none;
-	color: #888;
-	font-size: 18px;
-	cursor: pointer;
-	padding: 0 5px;
-	display: flex;
-	align-items: center;
-	transition: color 0.2s;
-}
-
-.list-view-controls button:hover {
-	color: #333;
-}
-
-.list-view-controls button:disabled {
-	color: #ccc;
-	cursor: not-allowed;
-}
-
-/* Значение количества */
-.quantity-value {
-	font-size: 14px;
-	font-weight: 500;
-	color: #333;
-}
-
-/* Стили для основной кнопки "В корзину", чтобы она совпадала по размеру */
-.add-to-cart-btn {
-	width: 100%;
-	max-width: 120px;
-	padding: 8px;
-	background: #f8f9fa;
-	border: 1px solid #e0e0e0;
-	border-radius: 4px;
-	cursor: pointer;
-	margin-top: 12px;
-	transition: background 0.2s;
-}
-
-.add-to-cart-btn:hover {
-	background: #e9ecef;
-}.product-image-box {
-	width: 100%;
-	height: 200px;
-	/* Высота для блока "Популярное" */
-	background-color: #f9f9f9;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-bottom: 15px;
+	margin-bottom: 20px;
 	overflow: hidden;
 }
 
@@ -196,9 +100,204 @@
 
 .product-card:hover .product-img {
 	transform: scale(1.05);
+	/* Легкое увеличение картинки при ховере */
 }
 
-.product-image-link {
+/* ==========================================================================
+   4. Информационный блок и Типографика товара
+   ========================================================================== */
+.product-info {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	/* Позволяет контенту занимать все пространство */
+}
+
+.product-name-link {
 	text-decoration: none;
-	display: block;
+	color: inherit;
+}
+
+.product-name {
+	font-size: 19px;
+	font-weight: 600;
+	margin: 0 0 8px 0;
+	color: #1a1a1a;
+	line-height: 1.4;
+}
+
+.product-price {
+	font-size: 17px;
+	font-weight: 600;
+	color: #2d5a52;
+	/* Цвет цены гармонирует с брендом */
+	margin: 0 0 20px 0;
+}
+
+/* ==========================================================================
+   5. Элементы управления (Кнопка "В корзину" и Счётчик количества)
+   ========================================================================== */
+.product-controls-wrapper {
+	margin-top: auto;
+	/* Прижимает кнопку к самому низу карточки */
+	width: 100%;
+	height: 48px;
+	/* Единая высота для кнопки и инпута количества */
+}
+
+/* Кнопка "В корзину" */
+.add-to-cart-btn {
+	width: 100%;
+	height: 100%;
+	background: none;
+	border: 1.5px solid #2d5a52;
+	color: #2d5a52;
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	cursor: pointer;
+	box-sizing: border-box;
+	transition: all 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+	background: #2d5a52;
+	color: #fff;
+}
+
+/* Контейнер +/- */
+.list-view-controls {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: #ffffff;
+	border: 1.5px solid #2d5a52;
+	/* Зеленая рамка под стиль кнопки */
+	box-sizing: border-box;
+	padding: 0 15px;
+	width: 100%;
+	height: 100%;
+}
+
+.list-view-controls button {
+	background: none;
+	border: none;
+	color: #2d5a52;
+	font-size: 20px;
+	font-weight: 500;
+	cursor: pointer;
+	padding: 0 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	transition: opacity 0.2s;
+}
+
+.list-view-controls button:hover {
+	opacity: 0.7;
+}
+
+.quantity-value {
+	font-size: 15px;
+	font-weight: 700;
+	color: #1a1a1a;
+}
+
+/* ==========================================================================
+   6. Адаптивность под мобильные устройства (до 768px)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+	.product-section {
+		margin: 40px auto;
+		padding: 0 15px;
+		/* Уменьшаем боковые поля экрана */
+	}
+
+	.section-header {
+		margin-bottom: 30px;
+		padding-bottom: 15px;
+	}
+
+	.section-title {
+		font-size: 22px;
+		/* Меньший аккуратный заголовок */
+		letter-spacing: 0.5px;
+	}
+
+	.section-count {
+		font-size: 12px;
+	}
+
+	/* Перестраиваем сетку в 2 аккуратные колонки вместо 4 */
+	.product-grid {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+		/* Компактные зазоры на мобилках */
+	}
+
+	.product-card {
+		padding: 12px;
+		/* Меньше внутренних отступов */
+		border-radius: 4px;
+	}
+
+	/* Отключаем hover-эффект перемещения вверх на тач-экранах (он там не нужен) */
+	.product-card:hover {
+		transform: none;
+		box-shadow: none;
+		border-color: #f0f0f0;
+	}
+
+	.product-image-box {
+		height: 140px;
+		/* Уменьшенная высота картинок для мобильных */
+		margin-bottom: 12px;
+	}
+
+	.product-name {
+		font-size: 14px;
+		/* Компактный шрифт названия лекарства */
+		margin-bottom: 4px;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		/* Ограничиваем название двумя строками, чтобы карточки были ровными */
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		height: 2.8em;
+		/* Стабильная высота текстового блока */
+	}
+
+	.product-price {
+		font-size: 15px;
+		margin-bottom: 12px;
+	}
+
+	.product-controls-wrapper {
+		height: 40px;
+		/* Чуть более компактные мобильные кнопки */
+	}
+
+	.add-to-cart-btn {
+		letter-spacing: 1px;
+		font-size: 11px;
+		padding: 0;
+	}
+
+	.list-view-controls {
+		padding: 0 8px;
+	}
+}
+
+/* Для самых маленьких экранов (до 380px) можно перестроить в 1 колонку, если потребуется */
+@media screen and (max-width: 380px) {
+	.product-grid {
+		grid-template-columns: 1fr;
+		gap: 15px;
+	}
+
+	.product-image-box {
+		height: 200px;
+	}
 }

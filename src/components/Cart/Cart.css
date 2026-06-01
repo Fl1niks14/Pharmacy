@@ -1,61 +1,101 @@
+/* ==========================================================================
+   1. Базовая структура страницы корзины
+   ========================================================================== */
 .cart-section {
 	padding: 80px 0;
-	min-height: 400px;
+	min-height: 500px;
+	background-color: #ffffff;
+	box-sizing: border-box;
 }
 
 .cart-container {
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 0 40px;
+	box-sizing: border-box;
 }
 
 .cart-title {
 	font-size: 36px;
+	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 2px;
-	margin-bottom: 40px;
+	margin: 0 0 40px 0;
+	color: #1a1a1a;
 }
 
 .cart-title span {
 	font-weight: 300;
 	font-style: italic;
 	color: #2d5a52;
+	/* Наш брендовый зеленый */
 }
 
+/* Сетка (Десктоп — 2 колонки) */
 .cart-grid {
 	display: grid;
 	grid-template-columns: 1.5fr 1fr;
 	gap: 50px;
+	align-items: start;
+}
+
+/* ==========================================================================
+   2. Строка товара (Корзина)
+   ========================================================================== */
+.cart-items-list {
+	display: flex;
+	flex-direction: column;
 }
 
 .cart-item-row {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	justify-content: space-between;
 	padding: 20px 0;
-	border-bottom: 1px solid #f0f0f0;
+	border-bottom: 1px solid #f4f7f6;
+	box-sizing: border-box;
 }
 
 .item-main {
 	display: flex;
 	align-items: center;
 	gap: 20px;
+	flex: 1.2;
 }
 
 .item-letter {
 	width: 50px;
 	height: 50px;
 	background: #f4f7f6;
+	/* Эвкалиптовая светлая подложка */
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	color: #2d5a52;
 	font-weight: 700;
+	font-size: 18px;
 	border-radius: 4px;
+	flex-shrink: 0;
 }
 
+.item-text-info h4 {
+	font-size: 16px;
+	font-weight: 600;
+	color: #1a1a1a;
+	margin: 0 0 4px 0;
+	line-height: 1.4;
+}
+
+.item-text-info p {
+	font-size: 12px;
+	color: #888;
+	margin: 0;
+}
+
+/* Блок мета-данных (Цена и Кнопка удаления) */
 .item-meta {
 	text-align: right;
+	flex: 1;
 }
 
 .item-price {
@@ -63,6 +103,7 @@
 	font-weight: 700;
 	font-size: 18px;
 	margin-bottom: 5px;
+	color: #1a1a1a;
 }
 
 .delete-btn {
@@ -73,111 +114,266 @@
 	text-transform: uppercase;
 	cursor: pointer;
 	letter-spacing: 1px;
+	font-weight: 600;
+	padding: 4px 0;
+	transition: opacity 0.2s ease;
 }
 
-.cart-checkout-card {
-	background: #f8faf9;
-	padding: 40px;
-	border-radius: 2px;
-	height: fit-content;
+.delete-btn:hover {
+	opacity: 0.7;
 }
-/* Контейнер для кнопок управления количеством */
+
+/* ==========================================================================
+   3. Управление количеством (Счетчик товаров)
+   ========================================================================== */
 .quantity-controls {
 	display: flex;
 	align-items: center;
 	gap: 12px;
-	background: #f8f9fa;
+	background: #f8faf9;
 	padding: 6px 12px;
-	border-radius: 8px;
-	border: 1px solid #e0e0e0;
+	border-radius: 6px;
+	border: 1px solid #eef2f0;
 }
 
-/* Сами кнопки + и - */
 .quantity-controls button {
 	width: 28px;
 	height: 28px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #fff;
-	border: 1px solid #d1d1d1;
-	border-radius: 6px;
+	background-color: #ffffff;
+	border: 1px solid #d1d8d5;
+	border-radius: 4px;
 	cursor: pointer;
-	font-size: 18px;
-	font-weight: 500;
-	color: #333;
+	font-size: 16px;
+	font-weight: 600;
+	color: #1a1a1a;
 	transition: all 0.2s ease;
 }
 
-/* Ховер на кнопки */
+/* Исправлен ховер кнопок на брендовый цвет вместо синего */
 .quantity-controls button:hover:not(:disabled) {
-	background-color: #007bff;
-	/* Цвет вашей основной темы */
-	color: white;
-	border-color: #007bff;
+	background-color: #2d5a52;
+	color: #ffffff;
+	border-color: #2d5a52;
 }
 
-/* Состояние, когда нельзя уменьшить меньше 1 */
 .quantity-controls button:disabled {
 	opacity: 0.4;
 	cursor: not-allowed;
-	background-color: #f0f0f0;
+	background-color: #f4f7f6;
 }
 
-/* Текст с цифрой количества */
 .quantity-value {
-	font-weight: 600;
-	font-size: 16px;
+	font-weight: 700;
+	font-size: 15px;
 	min-width: 20px;
 	text-align: center;
-	color: #2c3e50;
+	color: #1a1a1a;
 }
 
-/* Обновление строки товара для выравнивания */
-.cart-item-row {
+/* ==========================================================================
+   4. Правая карточка оформления (Checkout Card)
+   ========================================================================== */
+.cart-checkout-card {
+	background: #f8faf9;
+	padding: 40px;
+	border-radius: 4px;
+	height: fit-content;
+	box-sizing: border-box;
+}
+
+.checkout-card-title {
+	font-size: 16px;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	color: #1a1a1a;
+	margin: 0 0 20px 0;
+	font-weight: 700;
+}
+
+.checkout-row {
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
-	padding: 15px 0;
-	border-bottom: 1px solid #eee;
+	font-size: 14px;
+	color: #666;
+	margin-bottom: 12px;
 }
 
-/* Чтобы на мобилках всё не сжималось */
-@media (max-width: 600px) {
-	.cart-item-row {
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 15px;
-	}
-
-	.quantity-controls {
-		width: 100%;
-		justify-content: center;
-	}
-}
 .checkout-total {
 	margin-top: 25px;
 	padding-top: 20px;
 	border-top: 1.5px solid #2d5a52;
+	/* Брендовая линия */
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	font-size: 24px;
 	font-weight: 800;
+	color: #1a1a1a;
 }
 
+.checkout-total span:last-child {
+	color: #2d5a52;
+}
+
+/* Главная кнопка оформления */
 .main-checkout-btn {
 	width: 100%;
 	margin-top: 30px;
-	background: #000;
+	background: #1a1a1a;
 	color: #fff;
 	padding: 20px;
 	border: none;
 	text-transform: uppercase;
 	letter-spacing: 2px;
+	font-size: 12px;
+	font-weight: 700;
 	cursor: pointer;
-	transition: background 0.3s;
+	border-radius: 4px;
+	transition: background 0.3s ease;
 }
 
 .main-checkout-btn:hover {
 	background: #2d5a52;
+}
+
+/* Пустая корзина */
+.cart-is-empty {
+	text-align: center;
+	padding: 60px 20px;
+}
+
+.cart-is-empty p {
+	color: #666;
+	font-size: 16px;
+	margin-bottom: 30px;
+}
+
+.cart-is-empty .main-checkout-btn {
+	max-width: 250px;
+	margin-top: 0;
+}
+
+/* Вспомогательные анимации */
+.animate-fade-in {
+	animation: cartPageFade 0.4s ease-out forwards;
+}
+
+@keyframes cartPageFade {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ==========================================================================
+   5. Адаптивность под мобильные устройства (до 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+	.cart-section {
+		padding: 40px 0;
+	}
+
+	.cart-container {
+		padding: 0 15px;
+	}
+
+	.cart-title {
+		font-size: 24px;
+		margin-bottom: 25px;
+		text-align: center;
+		letter-spacing: 1px;
+	}
+
+	/* Двухколоночная сетка складывается в вертикальную ленту */
+	.cart-grid {
+		grid-template-columns: 1fr;
+		gap: 35px;
+	}
+
+	/* Карточный мобильный вид для строки товара */
+	.cart-item-row {
+		flex-wrap: wrap;
+		/* Разрешаем элементам переноситься */
+		gap: 20px;
+		padding: 20px 10px;
+		background-color: #ffffff;
+		border: 1px solid #f4f7f6;
+		border-radius: 8px;
+		margin-bottom: 15px;
+	}
+
+	.item-main {
+		flex: none;
+		width: 100%;
+		/* Название занимает всю верхнюю строчку */
+		gap: 15px;
+	}
+
+	.item-letter {
+		width: 44px;
+		height: 44px;
+		font-size: 16px;
+	}
+
+	.item-text-info h4 {
+		font-size: 15px;
+	}
+
+	/* Размещаем счетчик количества слева внизу */
+	.quantity-controls {
+		width: auto;
+		flex-grow: 0;
+		padding: 4px 10px;
+	}
+
+	.quantity-controls button {
+		width: 26px;
+		height: 26px;
+		font-size: 14px;
+	}
+
+	/* Размещаем цену и кнопку удаления справа внизу */
+	.item-meta {
+		flex: none;
+		width: auto;
+		text-align: right;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		justify-content: center;
+	}
+
+	.item-price {
+		font-size: 16px;
+		margin-bottom: 2px;
+	}
+
+	.delete-btn {
+		font-size: 10px;
+	}
+
+	/* Адаптация чекаут-карточки */
+	.cart-checkout-card {
+		padding: 25px 20px;
+	}
+
+	.checkout-total {
+		font-size: 20px;
+		margin-top: 20px;
+		padding-top: 15px;
+	}
+
+	.main-checkout-btn {
+		padding: 16px;
+		font-size: 11px;
+		margin-top: 20px;
+	}
 }

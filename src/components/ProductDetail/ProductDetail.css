@@ -1,56 +1,178 @@
+/* ==========================================================================
+   1. Базовая страница и кнопка Назад
+   ========================================================================== */
 .product-detail-page {
-	max-width: 1000px;
-	margin: 100px auto;
-	padding: 20px;
-}
-
-.product-detail-card {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 40px;
-	background: #fff;
-	padding: 40px;
-	border-radius: 15px;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-
-.large-placeholder {
-	width: 100%;
-	aspect-ratio: 1;
-	background: #f9f9f9;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 120px;
-	color: #eee;
-	border-radius: 10px;
-}
-
-.detail-price {
-	font-size: 32px;
-	font-weight: bold;
-	color: #2c3e50;
+	max-width: 1200px;
+	margin: 60px auto;
+	padding: 0 40px;
+	box-sizing: border-box;
 }
 
 .back-btn {
 	background: none;
 	border: none;
 	color: #888;
+	font-size: 14px;
+	font-weight: 500;
 	cursor: pointer;
-	margin-bottom: 20px;
-}.large-placeholder {
+	margin-bottom: 25px;
+	padding: 0;
+	transition: color 0.2s ease;
+	display: inline-flex;
+	align-items: center;
+}
+
+.back-btn:hover {
+	color: #2d5a52;
+	/* Смена цвета на бренд при наведении */
+}
+
+/* ==========================================================================
+   2. Главная карточка (Десктоп флекс-сетка)
+   ========================================================================== */
+.product-detail-card {
+	display: flex;
+	gap: 60px;
+	background: #fff;
+	padding: 40px;
+	border: 1px solid #f4f7f6;
+	border-radius: 12px;
+	box-shadow: 0 10px 30px rgba(45, 90, 82, 0.03);
+	align-items: stretch;
+	box-sizing: border-box;
+}
+
+/* Левая часть: Картинка */
+.product-detail-visual {
+	flex: 1;
+	background-color: #f8faf9;
+	/* Легкий эвкалиптовый фон подложки */
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 100px;
-	/* Размер буквы */
-	font-weight: bold;
-	background: #f0f0f0;
-	color: #ccc;
-	border-radius: 12px;
-	height: 300px;
-	/* Или любая фиксированная высота */
-}/* Анимация появления карточки */
+	min-height: 450px;
+	border-radius: 8px;
+	padding: 30px;
+	box-sizing: border-box;
+}
+
+.detail-img {
+	max-width: 85%;
+	height: auto;
+	max-height: 400px;
+	object-fit: contain;
+	filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.06));
+}
+
+/* Правая часть: Контент */
+.product-detail-info {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+/* ==========================================================================
+   3. Типографика и Текстовые блоки
+   ========================================================================== */
+.detail-category {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: 700;
+	color: #2d5a52;
+	/* Брендовая категория */
+	margin-bottom: 12px;
+	display: block;
+}
+
+.detail-title {
+	font-size: 36px;
+	font-weight: 800;
+	color: #1a1a1a;
+	line-height: 1.2;
+	margin: 0 0 20px 0;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+}
+
+.detail-description {
+	font-size: 15px;
+	color: #555;
+	line-height: 1.7;
+	margin: 0 0 40px 0;
+}
+
+/* Футер карточки (Цена + Добавление) */
+.detail-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+	margin-top: auto;
+	border-top: 1px solid #f4f7f6;
+	padding-top: 30px;
+}
+
+.detail-price {
+	font-size: 32px;
+	font-weight: 700;
+	color: #1a1a1a;
+}
+
+/* Кнопка купить */
+.add-btn {
+	background: #1a1a1a;
+	color: #fff;
+	border: 1px solid #1a1a1a;
+	padding: 18px 40px;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.add-btn:hover {
+	background: #2d5a52;
+	border-color: #2d5a52;
+}
+
+.add-btn:active {
+	transform: scale(0.97);
+}
+
+/* ==========================================================================
+   4. Всплывающее уведомление (Toast)
+   ========================================================================== */
+.toast {
+	position: fixed;
+	top: 30px;
+	left: 50%;
+	transform: translateX(-50%) translateY(-100px);
+	background: #1a1a1a;
+	color: white;
+	padding: 16px 32px;
+	border-radius: 4px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+	z-index: 1100;
+	/* Выше шапки сайта */
+	transition: transform 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.3s;
+	opacity: 0;
+	pointer-events: none;
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+	text-align: center;
+}
+
+.toast.show {
+	transform: translateX(-50%) translateY(0);
+	opacity: 1;
+}
+
+/* Анимация карточки */
 .animate-fade-in {
 	animation: fadeInUp 0.6s ease-out forwards;
 }
@@ -67,96 +189,93 @@
 	}
 }
 
-/* Стили для Toast (уведомления) */
-.toast {
-	position: fixed;
-	top: 20px;
-	left: 50%;
-	transform: translateX(-50%) translateY(-100px);
-	background: #333;
-	color: white;
-	padding: 12px 24px;
-	border-radius: 8px;
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-	z-index: 1000;
-	transition: transform 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.3s;
-	opacity: 0;
-	pointer-events: none;
+/* Обработка ошибки 404 для товара */
+.product-not-found {
+	text-align: center;
+	padding: 100px 20px;
 }
 
-.toast.show {
-	transform: translateX(-50%) translateY(0);
-	opacity: 1;
-}
-
-/* Эффект нажатия на кнопку */
-.add-btn:active {
-	transform: scale(0.95);
-}
-.product-detail-visual {
-	flex: 1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #fcfcfc;
-	/* Светлый фон */
-	padding: 40px;
-	border-radius: 20px;
-}
-
-.detail-img {
-	max-width: 100%;
-	max-height: 450px;
-	/* Увеличили размер для детальной страницы */
-	object-fit: contain;
-	filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.05));
-	/* Мягкая тень для объема */
-}/* Общий контейнер карточки */
-.product-detail-card {
-	display: flex;
-	gap: 60px;
-	background: #fff;
-	padding: 40px;
-	border-radius: 4px;
-	/* У тебя на скрине острые или слегка скругленные углы */
-	align-items: center;
-}
-
-/* Левая часть с картинкой */
-.product-detail-visual {
-	flex: 1;
-	background-color: #f9f9f9;
-	/* Светлая подложка под картинку */
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 400px;
-}
-
-.detail-img {
-	max-width: 80%;
-	/* Чтобы был "воздух" вокруг коробки */
-	height: auto;
-	object-fit: contain;
-	/* Если хочешь добавить мягкую тень как на скрине */
-	filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.08));
-}
-
-/* Правая часть с инфо */
-.product-detail-info {
-	flex: 1;
-}
-
-.detail-category {
-	font-size: 14px;
-	color: #888;
-	margin-bottom: 10px;
-	display: block;
-}
-
-.product-detail-info h1 {
-	font-family: 'Playfair Display', serif;
-	/* Как в твоем каталоге */
-	font-size: 36px;
+.product-not-found h2 {
+	font-size: 24px;
 	margin-bottom: 20px;
+	color: #1a1a1a;
+}
+
+/* ==========================================================================
+   5. Адаптивность под мобильные устройства (до 768px)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+	.product-detail-page {
+		margin: 30px auto;
+		padding: 0 15px;
+	}
+
+	.back-btn {
+		margin-bottom: 15px;
+		font-size: 13px;
+	}
+
+	/* Карточка перестраивается в вертикальный стек */
+	.product-detail-card {
+		flex-direction: column;
+		gap: 30px;
+		padding: 20px;
+	}
+
+	/* Уменьшаем блок подложки для фото */
+	.product-detail-visual {
+		min-height: 280px;
+		padding: 20px;
+	}
+
+	.detail-img {
+		max-height: 240px;
+	}
+
+	.detail-category {
+		font-size: 10px;
+		margin-bottom: 8px;
+	}
+
+	.detail-title {
+		font-size: 24px;
+		/* Компактный заголовок на смартфонах */
+		margin-bottom: 15px;
+	}
+
+	.detail-description {
+		font-size: 14px;
+		margin-bottom: 30px;
+		line-height: 1.6;
+	}
+
+	/* Нижний блок разделяется по вертикали на маленьких экранах */
+	.detail-footer {
+		flex-direction: column;
+		align-items: stretch;
+		/* Растягиваем элементы во всю ширину */
+		gap: 15px;
+		padding-top: 20px;
+		text-align: center;
+	}
+
+	.detail-price {
+		font-size: 28px;
+	}
+
+	.add-btn {
+		width: 100%;
+		/* Полноразмерная кнопка на мобильном — удобно нажимать */
+		padding: 16px 20px;
+		font-size: 12px;
+	}
+
+	.toast {
+		width: calc(100% - 40px);
+		/* Тост на телефонах занимает почти всю ширину */
+		box-sizing: border-box;
+		padding: 14px 20px;
+		font-size: 13px;
+		top: 20px;
+	}
 }

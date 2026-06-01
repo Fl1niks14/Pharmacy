@@ -1,22 +1,27 @@
+/* ==========================================================================
+   1. Базовый блок Hero-секции и контейнер
+   ========================================================================== */
 .hero {
 	width: 100%;
 	min-height: 85vh;
 	display: flex;
 	align-items: center;
 	background-color: #f8faf9;
-	/* Мягкий эвкалиптовый фон под картинку */
+	/* Мягкий эвкалиптовый фон */
 	overflow: hidden;
+	box-sizing: border-box;
 }
 
 .hero-container {
 	width: 100%;
 	max-width: 100%;
 	padding: 0 80px;
-	/* Большие отступы по краям */
+	/* Большие отступы для десктопа */
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	gap: 40px;
+	box-sizing: border-box;
 }
 
 .hero-content {
@@ -24,9 +29,12 @@
 	max-width: 700px;
 }
 
+/* ==========================================================================
+   2. Типографика (Заголовок, описание и переносы)
+   ========================================================================== */
 .hero-title {
 	font-size: clamp(48px, 6vw, 90px);
-	/* Шрифт, который сам подстраивается под экран */
+	/* Автоматический размер под экран */
 	line-height: 1.05;
 	font-weight: 800;
 	color: #1a1a1a;
@@ -39,7 +47,12 @@
 	font-weight: 300;
 	font-style: italic;
 	color: #2d5a52;
-	/* Наш акцентный зеленый */
+	/* Акцентный зеленый */
+}
+
+.desktop-br {
+	display: inline;
+	/* Перенос строки работает на десктопе */
 }
 
 .hero-description {
@@ -51,22 +64,37 @@
 	font-weight: 400;
 }
 
+/* ==========================================================================
+   3. Кнопки (Объединены, очищены от дубликатов и !important)
+   ========================================================================== */
 .hero-btns {
 	display: flex;
 	gap: 20px;
 }
 
-/* Кнопка в стиле Veloretti */
-.btn-primary {
-	background: #1a1a1a;
-	color: #fff;
-	border: 1px solid #1a1a1a;
+/* Общие базовые стили для обеих кнопок-ссылок */
+.btn-primary,
+.btn-secondary {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	/* Убирает нижнее подчеркивание ссылки */
+	text-align: center;
 	padding: 22px 45px;
 	font-size: 13px;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	font-weight: 700;
 	cursor: pointer;
+	box-sizing: border-box;
+}
+
+/* Первичная кнопка */
+.btn-primary {
+	background: #1a1a1a;
+	color: #ffffff;
+	border: 1px solid #1a1a1a;
 	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -76,59 +104,35 @@
 	transform: translateY(-2px);
 }
 
+/* Вторичная кнопка */
 .btn-secondary {
 	background: transparent;
 	color: #1a1a1a;
 	border: 1px solid #ddd;
-	padding: 22px 45px;
-	font-size: 13px;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	font-weight: 700;
-	cursor: pointer;
 	transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
 	border-color: #1a1a1a;
+	background-color: rgba(26, 26, 26, 0.02);
 }
 
+/* ==========================================================================
+   4. Блок изображения и Анимация парения
+   ========================================================================== */
 .hero-image {
 	flex: 1;
 	display: flex;
 	justify-content: flex-end;
 }
-/* Общие правки для обеих кнопок-ссылок */
-.btn-primary,
-.btn-secondary {
-	display: inline-flex;
-	/* Чтобы Link вел себя как кнопка */
-	align-items: center;
-	justify-content: center;
-	text-decoration: none;
-	/* Убирает подчеркивание текста */
-	text-align: center;
-}
 
-/* Убираем подчеркивание конкретно у первой кнопки */
-.btn-primary {
-	/* Твои старые стили (background, padding и т.д.) */
-	color: #ffffff !important;
-}
-
-/* Убираем подчеркивание у второй */
-.btn-secondary {
-	/* Твои старые стили */
-	color: #1a1a1a !important;
-}
 .hero-image img {
 	max-width: 90%;
 	height: auto;
 	object-fit: contain;
-	/* Добавляем мягкую тень, чтобы картинка ожила */
 	filter: drop-shadow(20px 30px 50px rgba(0, 0, 0, 0.08));
+	/* Мягкая тень */
 	animation: float 6s ease-in-out infinite;
-	/* Эффект парения для диплома */
 }
 
 @keyframes float {
@@ -142,5 +146,74 @@
 
 	100% {
 		transform: translateY(0px);
+	}
+}
+
+/* ==========================================================================
+   5. Адаптивность под мобильные устройства (до 768px)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+	.hero {
+		min-height: auto;
+		padding: 50px 0 40px 0;
+		/* Оптимальные отступы сверху и снизу */
+	}
+
+	.hero-container {
+		flex-direction: column-reverse;
+		/* Картинка сверху, текст снизу */
+		padding: 0 20px;
+		/* Мобильные боковые отступы */
+		gap: 35px;
+	}
+
+	.hero-content {
+		max-width: 100%;
+		text-align: center;
+		/* Центрируем контент */
+	}
+
+	.hero-title {
+		margin-bottom: 15px;
+		letter-spacing: -1px;
+		/* Снижаем сжатие букв на маленьком экране */
+	}
+
+	.desktop-br {
+		display: none;
+		/* Убираем жесткий перенос строки, чтобы текст не рвался */
+	}
+
+	.hero-description {
+		font-size: 15px;
+		max-width: 100%;
+		margin-bottom: 35px;
+		line-height: 1.6;
+	}
+
+	/* Перестраиваем кнопки в колонку на всю ширину экрана */
+	.hero-btns {
+		flex-direction: column;
+		gap: 12px;
+		width: 100%;
+	}
+
+	.btn-primary,
+	.btn-secondary {
+		width: 100%;
+		/* Удобно нажимать большим пальцем */
+		padding: 18px 30px;
+		/* Кнопки становятся чуть компактнее */
+	}
+
+	.hero-image {
+		width: 100%;
+		justify-content: center;
+		/* Центрируем картинку */
+	}
+
+	.hero-image img {
+		max-width: 80%;
+		/* Ограничиваем размер баночки/продукта */
 	}
 }

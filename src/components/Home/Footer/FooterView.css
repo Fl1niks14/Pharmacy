@@ -1,16 +1,26 @@
+/* ==========================================================================
+   1. Базовые стили футера (Темная тема)
+   ========================================================================== */
 .footer {
 	background-color: #000;
 	color: #fff;
-	padding: 80px ;
+	padding: 80px 0;
+	/* Добавлено 0 для корректных боковых отступов паддинга */
 	font-family: 'Inter', sans-serif;
+	box-sizing: border-box;
+	width: 100%;
 }
 
 .footer-container {
 	max-width: 1400px;
 	margin: 0 auto;
 	padding: 0 40px;
+	box-sizing: border-box;
 }
 
+/* ==========================================================================
+   2. Основная сетка (Десктоп — 4 колонки)
+   ========================================================================== */
 .footer-grid {
 	display: grid;
 	grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -18,10 +28,18 @@
 	margin-bottom: 80px;
 }
 
+/* Блок бренда */
+.footer-brand {
+	display: flex;
+	flex-direction: column;
+}
+
 .footer-logo {
 	font-size: 24px;
 	letter-spacing: 3px;
-	margin-bottom: 20px;
+	margin: 0 0 20px 0;
+	text-transform: uppercase;
+	font-weight: 800;
 }
 
 .footer-logo span {
@@ -34,14 +52,16 @@
 	font-size: 14px;
 	max-width: 250px;
 	line-height: 1.6;
+	margin: 0;
 }
 
+/* Колонки со ссылками */
 .footer-links h4,
 .footer-social h4 {
 	font-size: 12px;
 	text-transform: uppercase;
 	letter-spacing: 2px;
-	margin-bottom: 25px;
+	margin: 0 0 25px 0;
 	color: #fff;
 }
 
@@ -53,6 +73,7 @@
 	font-size: 13px;
 	margin-bottom: 12px;
 	transition: color 0.3s ease;
+	width: fit-content;
 }
 
 .footer-links a:hover,
@@ -60,6 +81,9 @@
 	color: #fff;
 }
 
+/* ==========================================================================
+   3. Нижняя часть футера (Копирайт)
+   ========================================================================== */
 .footer-bottom {
 	border-top: 1px solid #222;
 	padding-top: 30px;
@@ -70,6 +94,11 @@
 	color: #555;
 	text-transform: uppercase;
 	letter-spacing: 1px;
+	box-sizing: border-box;
+}
+
+.footer-bottom p {
+	margin: 0;
 }
 
 .legal-links {
@@ -80,4 +109,93 @@
 .legal-links a {
 	color: #555;
 	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.legal-links a:hover {
+	color: #fff;
+}
+
+/* ==========================================================================
+   4. Адаптивность под мобильные устройства (до 768px)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+	.footer {
+		padding: 50px 0 30px 0;
+		/* Более компактные отступы сверху и снизу */
+	}
+
+	.footer-container {
+		padding: 0 20px;
+		/* Сужаем поля до мобильных стандартов */
+	}
+
+	/* Перестраиваем сетку: бренд сверху на всю ширину, ссылки ниже по парам */
+	.footer-grid {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 35px 20px;
+		margin-bottom: 40px;
+	}
+
+	.footer-brand {
+		grid-column: span 2;
+		/* Растягиваем блок бренда на полную ширину строки */
+		text-align: center;
+		align-items: center;
+		border-bottom: 1px solid #111;
+		/* Мягкое визуальное разделение */
+		padding-bottom: 30px;
+	}
+
+	.footer-tagline {
+		max-width: 100%;
+	}
+
+	/* Центрируем ссылки во всех колонках для красивого мобильного UI */
+	.footer-links,
+	.footer-social {
+		text-align: center;
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.footer-links a,
+	.social-row a {
+		width: auto;
+		/* Позволяет ссылкам корректно выравниваться по центру */
+		margin-bottom: 14px;
+		/* Чуть увеличиваем отступ для удобного клика пальцем */
+	}
+
+	.footer-links h4,
+	.footer-social h4 {
+		margin-bottom: 15px;
+		/* Уменьшаем избыточный отступ заголовков */
+	}
+
+	/* Нижний блок копирайта перестраиваем в вертикальный стек */
+	.footer-bottom {
+		flex-direction: column;
+		gap: 15px;
+		text-align: center;
+		padding-top: 25px;
+	}
+
+	.legal-links {
+		justify-content: center;
+	}
+}
+
+/* Дополнительная оптимизация для самых маленьких экранов (до 414px) */
+@media screen and (max-width: 414px) {
+	.footer-grid {
+		grid-template-columns: 1fr;
+		/* Все блоки встают друг под друга в одну колонку */
+		gap: 30px;
+	}
+
+	.footer-brand {
+		grid-column: span 1;
+	}
 }
